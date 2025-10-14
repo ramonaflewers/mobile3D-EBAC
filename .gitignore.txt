@@ -1,0 +1,72 @@
+# Arquivos gerados pelo sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos de log e temporários
+*.log
+*.tmp
+
+# Pastas do Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+MemoryCaptures/
+Assets/AssetStoreTools*
+
+# Arquivos de cache e sistema
+sysinfo.txt
+
+# Arquivos do Rider / VSCode / Visual Studio
+.idea/
+.vscode/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+
+# Arquivos de backup do MonoDevelop
+*.pidb.meta
+
+# Arquivos de build do Unity Cloud
+.build/
+
+# Padrão para ignorar o arquivo de ambiente
+.env
+
+# Dados de simulação do XR
+XRSettings.asset
+
+# Dados da pasta de testes
+TestResults/
+
+# Crash reports do Unity
+crash-reports/
+
+# Dados de profiler
+*.psess
+*.vsp
+*.vspx
+
+# Logs de build
+build.log
+
+# MacOS Finder folder attributes
+.AppleDouble
+.LSOverride
+
+# Arquivos da Unity Collaborate (se não estiver usando)
+.collabignore
+
+# Se estiver usando Addressables
+Assets/AddressableAssetsData/*/*.bin*
+Assets/AddressableAssetsData/*/*.bundle
+Assets/AddressableAssetsData/*/*.json
+
