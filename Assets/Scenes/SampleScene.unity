@@ -3002,6 +3002,10 @@ PrefabInstance:
       propertyPath: uiTextPowerup
       value: 
       objectReference: {fileID: 574972063}
+    - target: {fileID: 8820527021224280488, guid: f6f4e3c2da499d44e9ca1b22ccdc28f1, type: 3}
+      propertyPath: animatorManager
+      value: 
+      objectReference: {fileID: 5786895825348337505}
     - target: {fileID: 8823013528956692480, guid: f6f4e3c2da499d44e9ca1b22ccdc28f1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
