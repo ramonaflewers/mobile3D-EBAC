@@ -1,17 +1,21 @@
 using UnityEngine;
-using System.Collections.Generic;
 
-namespace ebac.core.singleton{
-
-    public class singleton<T> : MonoBehaviour where T: MonoBehaviour
+namespace Ebac.Core.Singleton
+{
+    public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         public static T Instance;
 
-        private void Awake(){
+        private void Awake()
+        {
             if (Instance == null)
+            {
                 Instance = GetComponent<T>();
+            }
             else
+            {
                 Destroy(gameObject);
+            }
         }
     }
 }
