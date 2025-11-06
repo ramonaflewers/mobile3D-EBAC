@@ -4,7 +4,7 @@ using UnityEngine;
 public class AnimatorManager : MonoBehaviour
 {
     public Animator animator;
-    public List<AnimationSetup> animatorSetups;
+
     public enum AnimationType
     {
         IDLE,
@@ -14,29 +14,19 @@ public class AnimatorManager : MonoBehaviour
 
     public void Play(AnimationType type)
     {
-        /*animatorSetups.ForEach(i =>
+        switch (type)
         {
-            if(i.type == type)
-            {
-                animator.SetTrigger(i.trigger);
-            }
-        });*/
-
-        foreach(var animation in animatorSetups)
-        {
-            if(animation.type == type)
-            {
-                animator.SetTrigger(animation.trigger);
+            case AnimationType.RUN:
+                animator.SetBool("IsRunning", true);
                 break;
-            }
+
+            case AnimationType.IDLE:
+                animator.SetBool("IsRunning", false);
+                break;
+
+            case AnimationType.DEAD:
+                animator.SetTrigger("Dead");
+                break;
         }
     }
-}
-
-
-[System.Serializable]
-public class AnimationSetup
-{
-    public AnimatorManager.AnimationType type;
-    public string trigger;
 }

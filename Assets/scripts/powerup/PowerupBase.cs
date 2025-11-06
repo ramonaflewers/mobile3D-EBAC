@@ -8,11 +8,13 @@ public class PowerupBase : collectableBase
     {
         base.onCollect();
         StartPowerup();
+        PlayerController.Instance.BounceEffect();
     }
 
     protected virtual void StartPowerup()
     {
         Invoke(nameof(EndPowerup), duration);
+        
     }
 
     protected virtual void EndPowerup()

@@ -4,7 +4,7 @@ public class HeightPower : PowerupBase
 {
     [Header("height")]
     public float height = 2;
-    public float animDuration = .1f;
+    public float animDuration = .3f;
     public DG.Tweening.Ease ease = DG.Tweening.Ease.OutBack;
 
     protected override void StartPowerup()

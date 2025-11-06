@@ -4,22 +4,23 @@ public class TouchController : MonoBehaviour
 {
     public Vector2 pastPosition;
     public float velocity = 1f;
-    void Start()
-    {
-        
-    }
 
+private void Start() {
+    
+}
     void Update()
     {
         if (Input.GetMouseButton(0))
         {
-            Move(Input.mousePosition.x - pastPosition.x);
+            float deltaX = Input.mousePosition.x - pastPosition.x;
+            Move(deltaX);
         }
         pastPosition = Input.mousePosition;
     }
     
     public void Move(float speed)
     {
-        transform.position += Vector3.right * Time.deltaTime * speed * velocity;
+        Vector3 move = Vector3.right * speed * velocity * Time.deltaTime;
+        transform.position += move;
     }
 }

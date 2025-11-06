@@ -5,12 +5,13 @@ TagManager:
   serializedVersion: 3
   tags:
   - enemy
+  - endLine
   - endline
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - wall
   - Water
   - UI
   - 

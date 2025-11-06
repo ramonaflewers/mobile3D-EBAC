@@ -9,7 +9,7 @@ public class SpeedPower : PowerupBase
     {
         base.StartPowerup();
         PlayerController.Instance.PowerupSpeed(speed);
-        PlayerController.Instance.PowerupText("speeding up");
+        PlayerController.Instance.PowerupText("");
     }
 
     protected override void EndPowerup()

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +11,6 @@ public class LevelManager : MonoBehaviour
     public int startingNumberOfPieces = 3;
     public int numberOfPieces = 5;
     public int endingNumberOfPieces = 1;
-    public float piecesDelay = 0.3f;
 
     public ArtManager.ArtType artType;
 
@@ -59,7 +57,26 @@ public class LevelManager : MonoBehaviour
     {
         if (list.Count == 0) return;
 
-        var piecePrefab = list[Random.Range(0, list.Count)];
+        // CALCULA SORTEIO PONDERADO PELA RARIDADE
+        int totalRarity = 0;
+        foreach (var piece in list)
+            totalRarity += piece.rarity;
+
+        int randomValue = Random.Range(0, totalRarity);
+        int cumulative = 0;
+        LevelPieceBase piecePrefab = list[0]; // fallback
+
+        foreach (var piece in list)
+        {
+            cumulative += piece.rarity;
+            if (randomValue < cumulative)
+            {
+                piecePrefab = piece;
+                break;
+            }
+        }
+
+        // SPAWN
         var spawned = Instantiate(piecePrefab, container);
 
         if (_spawnedPieces.Count > 0)

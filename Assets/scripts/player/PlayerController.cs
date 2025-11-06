@@ -8,23 +8,23 @@ public class PlayerController : MonoBehaviour
 
     [Header("Lerp")]
     public Transform target;
-    public float LerpSpeed = 1f;
+    public float LerpSpeed = 5f;
 
-    public float speed = 1f;
+    [Header("Movement")]
+    public float speed = 5f;
     public string enemyTag = "enemy";
     public string endTag = "endLine";
     public GameObject endScreen;
 
-    [Header("animation")]
+    [Header("Animation")]
     public AnimatorManager animatorManager;
 
-    private float _currentspeed;
+    private float _currentSpeed;
     private Vector3 _startPosition;
     private bool canRun;
     private Vector3 _pos;
 
     public bool invincible = false;
-
     public TextMeshPro uiTextPowerup;
 
     private void Awake()
@@ -35,26 +35,33 @@ public class PlayerController : MonoBehaviour
             return;
         }
         Instance = this;
-
-        _currentspeed = speed;
+        _currentSpeed = speed;
     }
 
     private void Start()
     {
         _startPosition = transform.position;
         ResetSpeed();
+        transform.localScale = Vector3.zero;
+        canRun = false;
+        transform.DOScale(Vector3.one, 0.6f).SetEase(Ease.OutBack);
+        animatorManager.Play(AnimatorManager.AnimationType.IDLE);
     }
 
     void Update()
     {
-        if (!canRun) return;
+        if (canRun)
+        {
+            transform.Translate(Vector3.forward * _currentSpeed * Time.deltaTime, Space.World);
 
-        _pos = target.position;
-        _pos.y = transform.position.y;
-        _pos.z = transform.position.z;
-
-        transform.Translate(transform.forward * _currentspeed * Time.deltaTime);
-        transform.position = Vector3.Lerp(transform.position, _pos, LerpSpeed * Time.deltaTime);
+            if (target != null)
+            {
+                _pos = target.position;
+                _pos.y = transform.position.y;
+                _pos.z = transform.position.z;
+                transform.position = Vector3.Lerp(transform.position, _pos, LerpSpeed * Time.deltaTime);
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -90,10 +97,17 @@ public class PlayerController : MonoBehaviour
         animatorManager.Play(AnimatorManager.AnimationType.IDLE);
     }
 
-    public void startRun()
+    public void StartRun()
     {
         canRun = true;
+        _currentSpeed = speed;
         animatorManager.Play(AnimatorManager.AnimationType.RUN);
+    }
+
+    public void StopRun()
+    {
+        canRun = false;
+        animatorManager.Play(AnimatorManager.AnimationType.IDLE);
     }
 
     public void PowerupText(string s)
@@ -103,17 +117,29 @@ public class PlayerController : MonoBehaviour
 
     public void PowerupSpeed(float f)
     {
-        _currentspeed = f;
+        _currentSpeed = f;
     }
 
     public void ResetSpeed()
     {
-        _currentspeed = speed;
+        _currentSpeed = speed;
     }
 
     public void SetInvincible(bool b = true)
     {
         invincible = b;
+    }
+
+    public void BounceEffect(float bounceScale = 1.2f, float duration = 0.25f)
+    {
+        transform.DOKill();
+        transform.DOScale(Vector3.one * bounceScale, duration * 0.5f)
+            .SetEase(Ease.OutQuad)
+            .OnComplete(() =>
+            {
+                transform.DOScale(Vector3.one, duration * 0.5f)
+                    .SetEase(Ease.InQuad);
+            });
     }
 
     public void ChangeHeight(float amount, float duration, float animDuration, Ease ease)
@@ -122,8 +148,32 @@ public class PlayerController : MonoBehaviour
         Invoke(nameof(ResetHeight), duration);
     }
 
-    public void ResetHeight(float animDuration)
+    public void ResetHeight(float animDuration = 0.3f)
     {
         transform.DOMoveY(_startPosition.y, animDuration);
+    }
+    
+    public void SetTransparency(float alpha, float duration = 0f)
+    {
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+        foreach (Renderer r in renderers)
+        {
+            foreach (var mat in r.materials)
+            {
+                if (mat.HasProperty("_Color"))
+                {
+                    if (duration > 0f)
+                    {
+                        mat.DOFade(alpha, duration);
+                    }
+                    else
+                    {
+                        Color c = mat.color;
+                        c.a = alpha;
+                        mat.color = c;
+                    }
+                }
+            }
+        }
     }
 }

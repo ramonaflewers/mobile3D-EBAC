@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 2966547290958863302}
   - component: {fileID: 4675522911656194953}
   - component: {fileID: 285923184883415052}
-  - component: {fileID: 8820527021224280488}
+  - component: {fileID: 7877488448913468905}
   m_Layer: 0
   m_Name: PlayerContainer
   m_TagString: Player
@@ -347,7 +347,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 1
---- !u!114 &8820527021224280488
+--- !u!114 &7877488448913468905
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -356,16 +356,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 4341464715394562478}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc925fdae1220c14fbd347acf34a4d18, type: 3}
+  m_Script: {fileID: 11500000, guid: f13a990f90ede664987e4220ea8ab4dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 5101452982104846736}
-  LerpSpeed: 15
-  speed: 15
+  target: {fileID: 0}
+  LerpSpeed: 5
+  speed: 5
   enemyTag: enemy
-  endTag: endline
+  endTag: endLine
   endScreen: {fileID: 0}
+  animatorManager: {fileID: 0}
   invincible: 0
+  uiTextPowerup: {fileID: 0}
 --- !u!1 &7334395478153661223
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,7 +380,7 @@ GameObject:
   - component: {fileID: 5286420347208946931}
   - component: {fileID: 3900171393517813138}
   - component: {fileID: 5270307386594643902}
-  - component: {fileID: 2632755728782142476}
+  - component: {fileID: 75681291136131530}
   m_Layer: 0
   m_Name: PositionController
   m_TagString: Untagged
@@ -475,7 +477,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2632755728782142476
+--- !u!114 &75681291136131530
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -484,8 +486,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7334395478153661223}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f13a990f90ede664987e4220ea8ab4dc, type: 3}
+  m_Script: {fileID: 11500000, guid: fc925fdae1220c14fbd347acf34a4d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pastPosition: {x: 0, y: 0}
-  velocity: 0.6
+  velocity: 1
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
