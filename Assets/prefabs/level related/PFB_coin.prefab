@@ -122,4 +122,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   compareTag: Player
-  collectParticlePrefab: {fileID: 0}
+  collectParticlePrefab: {fileID: 8255251285386590955, guid: 27c47e0be366e404d9a733333cf54c72, type: 3}

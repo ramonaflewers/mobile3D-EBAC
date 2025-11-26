@@ -2646,6 +2646,10 @@ PrefabInstance:
       value: 183.12296
       objectReference: {fileID: 0}
     - target: {fileID: 7877488448913468905, guid: f6f4e3c2da499d44e9ca1b22ccdc28f1, type: 3}
+      propertyPath: speed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7877488448913468905, guid: f6f4e3c2da499d44e9ca1b22ccdc28f1, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 249641289}
