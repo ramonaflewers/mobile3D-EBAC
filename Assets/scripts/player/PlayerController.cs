@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Animation")]
     public AnimatorManager animatorManager;
+    public ParticleSystem vfxDeath;
 
     private float _currentSpeed;
     private Vector3 _startPosition;
@@ -88,6 +89,7 @@ public class PlayerController : MonoBehaviour
         canRun = false;
         endScreen.SetActive(true);
         animatorManager.Play(AnimatorManager.AnimationType.DEAD);
+        if(vfxDeath != null) vfxDeath.Play();
     }
 
     private void EndGameByEndLine()
